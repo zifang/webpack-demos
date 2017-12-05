@@ -1,0 +1,43 @@
+
+<div class="loadimg" id="loadimg" style="display: none;"></div>
+<div class="weui-header">
+	<div class="weui-header-left"><a href="javascript:;" ui-sref="mycenter" id="mycenter"><i class="iconfont icon-icon"></i></a></div>
+	<div class="weui-header-right">
+		<a class="ordernames" id="alreadyOrders" ui-sref="addVersion"><i class="iconfont icon-order"></i> 已点订单</a>
+	</div> 
+</div>
+<img src="../images/nodish.png" height="350" width="350" />
+<div ng-controller="menusCtrl as $ctrl">
+	<div class="tab-con clearfix" ng-show="$ctrl.isList">
+		<div id="shopmenu-category" class="scrollpage scroll-active">
+			<ul class="list-group list-group1">
+				<li ng-repeat="(index,item) in $ctrl.dishesList" ng-class="{'list-item':true,'active':$ctrl.currentIndex==index}" ng-click="$ctrl.selectMenu(index,$event)">
+					<a href="javascript:;">{{item.dishesSortName}}</a><em class="cart-count" ng-show="item.submenuCount&&item.submenuCount>0">{{item.submenuCount}}</em>
+				</li>
+			</ul>
+		</div>
+		<!--菜单列表开始-->
+		<div id="shopmenu-list" class="shopmenu-list">
+			<div id="scroller">
+				<ul class="listgroup" ng-repeat="item in $ctrl.dishesList" >
+					<li class="list-title">{{item.dishesSortName}}</li>
+					<li class="list-item item-img" ng-repeat="subitem in item.list">
+						<item-dish></item-dish>
+					</li>
+				</ul>
+				<div class="list-title-dis">图片仅供参考 菜品请以实物为准</div>
+			</div>
+		</div>
+		<!--菜单列表结束-->
+		<cart></cart>
+		<div class="ball-container">
+        <div ng-repeat="ball in balls" ng-animate="enter">
+            <div v-show="ball.show" class="ball">
+              <div class="inner inner-hook"></div>
+            </div>
+        </div>
+    </div>
+	</div>
+	<!--遮罩层-->
+	<div class="global-mask layout" ng-show="$ctrl.showCart || $ctrl.showClearCart"></div>
+</div>

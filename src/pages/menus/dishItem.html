@@ -1,0 +1,17 @@
+<div class="wrap">
+	<div class="list-img"> 
+		<!-- <img ng-if="subitem.imgUrl" ng-src="{{subitem.imgUrl}}" width="50" height="50"> -->
+		<!-- <img ng-if="!subitem.imgUrl" src="../../images/nodish.png" width="50" height="50"> -->
+		<img ng-src="{{subitem.imgUrl||'./images/nodish.png'}}" width="50" height="50">
+	</div>
+	<div class="list-content">
+		<h4 class="title">{{subitem.dishesName}}</h4>
+		<p class="description">月售<strong>{{subitem.soldNumber}}</strong>{{subitem.units}}<span class="hide priceall"></span></p>
+		<p class="price-p"><b>￥</b><strong class="price">{{subitem.price}}</strong><span class="units"><i>/</i>{{subitem.units}}</span></p>
+	</div>
+</div>
+<div class="item-add">
+	<span class="btn -minus" ng-click="$ctrl.decreaseDish(subitem)" ng-show="subitem.count&&subitem.count!=0"> <i class="iconfont icon-jianhao inner"></i></span>
+	<span class="item-count" ng-show="subitem.count&&subitem.count!=0">{{subitem.count}}</span>
+	<span class="btn -plus ball" ng-click="$ctrl.addDish(subitem,$event);"> <i class="iconfont icon-jiahao"></i></span>
+</div>

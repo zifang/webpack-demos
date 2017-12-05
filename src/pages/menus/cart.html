@@ -1,0 +1,41 @@
+<div id="shopmenu-cart-list" class="shopmenu-cart-list" ng-show="$ctrl.showCart">
+	<div class="shopmenu-cart-title"><span class="left">桌号11</span><span class="right" ng-click="$ctrl.showClearBox()"><i class="icon-x icon-x9"></i>清空购物车</span></div>
+	<div id="cart-list-bottom" class="cart-list-bottom">
+		<ul class="list-group">
+			<li class="cl-item" ng-repeat="item in $ctrl.cartList">
+				<div class="cl-r1">{{item.dishesName}}</div>
+				<div class="cl-r3">￥<span>{{item.price}}</span></div>
+				<div class="cl-r2">
+					<div class="item-add">
+						<span class="btn -minus" ng-click="$ctrl.decreaseDish(item)" ng-show="item.count&&item.count>0"><i class="iconfont icon-jianhao inner"></i></span>
+						<span class="item-count" ng-show="item.count&&item.count>0">{{item.count}}</span>
+						<span class="btn -plus" ng-click="$ctrl.addDish(item,$event)"><i class="iconfont icon-jiahao"></i></span>
+					</div>
+				</div>
+				<div class="cl-r4"></div>
+			</li>
+		</ul>
+	</div>
+</div>	
+<div id="shopmenu-cart-bar" class="shopmenu-cart-bar" >
+	<div ng-class="{'row-num':true,'bigsmall':$ctrl.showAnimate}" ng-click="$ctrl.showCartList()"><i class="iconfont icon-iconfontshopcar" style="color:#fff;font-size:24px;"></i><em class="cart-count num" ng-show="$ctrl.sumCount>0">{{$ctrl.sumCount}}</em></div>
+	<div class="row-cart">
+		<div class="price-info">
+			<div class="cart-price zongjia" ng-show="$ctrl.sumCount==0"><span>购物车空空如也</span></div>
+			<div class="cart-premium" ng-show="$ctrl.sumCount>0">合计:{{$ctrl.sumPrice.toFixed(2)}}元</div>
+		</div>
+	</div>
+	<a ng-class="{'row-status':true,'cb-disable':$ctrl.sumCount==0}" href="javascript:void(0)" ng-click="$ctrl.nextClick()">下一步</a>
+</div>
+<!--清除订单提醒 -->
+<div class="toast parentlayer clearFood" ng-show="$ctrl.showClearCart" style="position:fixed;top:0;right:0;bottom:0;left:0;z-index:1000000;">
+	<div class="weui_dialog weui_dialog_visible">
+		<div class="weui_dialog_hd">
+			<strong class="weui_dialog_title">确认清空购物车吗?</strong>
+		</div>
+		<div class="weui_dialog_b" style="padding:30px 90px 50px;">
+			<a href="javascript:;" class="weui_btn_dialog default left">取消</a>
+			<a href="javascript:void(0)" class="weui_btn_dialog primary right" ng-click="$ctrl.clearCart()">确定</a>
+		</div>
+	</div>
+</div>
